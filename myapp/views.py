@@ -4,3 +4,6 @@ from django.http import HttpResponse
 
 def index (request):
     return HttpResponse ("¡Hola, mundo!")
+
+def informar (request):
+    return HttpResponse ("Esta es nuestra primera web realizada con DJango 2022")
