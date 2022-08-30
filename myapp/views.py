@@ -1,6 +1,7 @@
 import sqlite3
 import requests
 from django.http import HttpResponse, JsonResponse
+from django.shortcuts import render
 
 
 def index(request):
@@ -105,3 +106,7 @@ def aeropuertos_json(request):
         aeropuertos.append(aeropuerto)
     f.close()
     return JsonResponse(aeropuertos, safe=False)
+
+def nuevo_index(request):
+    ctx = {"nombre":"Juan"}
+    return render(request, "myapp/index.html",ctx)
