@@ -10,5 +10,6 @@ urlpatterns = [
     path("cotizacion-dolar", views.cotizacion_dolar, name="cotizacion_dolar"),
     path("aeropuertos", views.aeropuertos, name="aeropuertos"),
     path("aeropuertos/json", views.aeropuertos_json, name="aeropuertos_json"),
-    path("nuevo-index",views.nuevo_index,name="nuevo_index")
+    path("nuevo-index",views.nuevo_index,name="nuevo_index"),
+    path("nuevos-cursos", views.nuevos_cursos, name="nuevos_cursos")
 ]

@@ -1,3 +1,4 @@
+from ast import Return
 import sqlite3
 import requests
 from django.http import HttpResponse, JsonResponse
@@ -108,5 +109,15 @@ def aeropuertos_json(request):
     return JsonResponse(aeropuertos, safe=False)
 
 def nuevo_index(request):
-    ctx = {"nombre":"Juan"}
-    return render(request, "myapp/index.html",ctx)
+    ctx = {"nombre":"Juan","cursos":5,"actualmente":"Django"}
+    return render(request, "myapp/index.html", ctx)
+
+
+def nuevos_cursos(request):
+    conn = sqlite3.connect("cursos.db")
+    cursor = conn.cursor()
+    cursor.execute ("SELECT nombre, inscriptos FROM cursos")
+    cursos = cursor.fetchall()
+    conn.close()
+    ctx = {"cursos": cursos}
+    return render(request, "myapp/cursos.html", ctx)
