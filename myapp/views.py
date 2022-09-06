@@ -3,6 +3,7 @@ import sqlite3
 import requests
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
+from . import forms
 
 
 def index(request):
@@ -121,3 +122,40 @@ def nuevos_cursos(request):
     conn.close()
     ctx = {"cursos": cursos}
     return render(request, "myapp/cursos.html", ctx)
+
+
+def curso(request, nombre_curso):
+    conn = sqlite3.connect("cursos.db")
+    cursor = conn.cursor()
+    cursor.execute(
+        "SELECT nombre, inscriptos FROM cursos WHERE nombre=?",[nombre_curso])
+    curso = cursor.fetchone()
+    ctx = {"curso": curso}
+    conn.close()
+    return render(request, "myapp/curso.html", ctx)
+
+"""
+def nuevo_curso(request):
+    form = forms.FormularioCurso()
+    ctx = {"form": form}
+    return render(request, "myapp/nuevo_curso.html", ctx)
+"""
+
+
+
+def nuevo_curso(request):
+    if request.method == "POST":
+        form = forms.FormularioCurso(request.POST)
+        if form.is_valid():
+            conn = sqlite3.connect("cursos.db")
+            cursor = conn.cursor()
+            cursor.execute(
+                "INSERT INTO cursos VALUES (?, ?)",
+                (form.cleaned_data["nombre"], form.cleaned_data["inscriptos"]))
+            conn.commit()
+            conn.close()
+            return HttpResponse("¡Curso creado correctamente!")
+    else:
+        form = forms.FormularioCurso()
+        ctx = {"form": form}
+        return render(request, "myapp/nuevo_curso.html", ctx)
