@@ -74,6 +74,7 @@ WSGI_APPLICATION = 'myproject.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -81,6 +82,8 @@ DATABASES = {
     }
 }
 
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -104,7 +107,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es-ar'
 
 TIME_ZONE = 'UTC'
 
@@ -119,3 +122,26 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+#https://docs.djangoproject.com/en/4.1/topics/logging/
+"""
+LOGGING = {
+'version': 1,
+'disable_existing_loggers': False,
+'handlers': {
+    'file': {
+        'level': 'DEBUG',
+        'class': 'logging.FileHandler',
+        'filename': os.path.join(BASE_DIR,'registro.log'),
+    },
+},
+'loggers': {
+    'django': {
+        'handlers': ['file'],
+        'level': 'DEBUG',
+        'propagate': True,
+    },
+},
+}
+"""

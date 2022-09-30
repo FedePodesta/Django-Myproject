@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,12 +10,8 @@
 </head>
 
 <body>
-    {% if curso == None %}
-    Error
-    {% else %}
-    El curso es {{curso.0}} tiene {{curso.1}} inscriptos
-    {% endif %}
-
+    <H1>Ejemplo conectar Mysql</H1>
+    <img src='{% static "myapp/imagenes/mysql.jpg"%}'>
 </body>
 
 </html>
